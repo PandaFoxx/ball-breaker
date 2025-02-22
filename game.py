@@ -1,5 +1,6 @@
 import pygame
 import sys
+import random
 from paddle import paddle
 from ball import ball
 from options import options
@@ -34,6 +35,15 @@ while running:
         bullet.launch(player.rect())
 
     bullet.move(player.rect())
+
+    # Draw Blocks
+    brick_y = -25
+    for a in range(5):
+        brick_y += 35
+        brick_x = 10
+        for b in range(12):
+            pygame.draw.rect(screen, (random.randint(128,255),random.randint(128,255),random.randint(128,255)), (brick_x, brick_y, 50, 20))
+            brick_x += 65
 
     # Draw Player
     pygame.draw.rect(screen, player.color, player.rect())
