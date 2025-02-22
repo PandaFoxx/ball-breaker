@@ -13,6 +13,8 @@ pygame.display.set_caption("Breakout")
 
 class paddle:
     def __init__(self, boundary_w, boundary_h):
+        self.boundary_w = boundary_w-2
+        self.boundary_h = boundary_h
         self.width = 200
         self.height = 15
         self.colour = (0,255,0)
@@ -24,10 +26,12 @@ class paddle:
         return (self.x, self.y, self.width, self.height)
     
     def move_left(self):
-        self.x -= self.speed
+        if self.x > 2:
+            self.x -= self.speed
 
     def move_right(self):
-        self.x += self.speed
+        if (self.x + self.width) < self.boundary_w:
+            self.x += self.speed
 
 player = paddle(SCREEN_WIDTH, SCREEN_HEIGHT)
 
