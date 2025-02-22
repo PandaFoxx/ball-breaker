@@ -27,7 +27,7 @@ class ball:
         self.reset_position(player[0], player[1], player[2], player[3])
         self.alive = False
     
-    def handle_collisions(self, player):
+    def handle_collisions(self, player, bricks):
         left = self.x - self.radius
         top = self.y - self.radius
         right = self.x + self.radius
@@ -47,12 +47,21 @@ class ball:
                 self.speed_y *= -1
             else:
                 self.die(player)
+
+        for brick in bricks:
+            brick_left = brick[1][0]
+            brick_top = brick[1][1]
+            brick_right = brick[1][0] + brick[1][2]
+            brick_bottom = brick[1][1] + brick[1][3]
+            if left <= brick_right and right >= brick_left and top <= brick_bottom and bottom >= brick_top:
+                bricks.remove(brick)
+            
     
-    def move(self, player):
+    def move(self, player, bricks):
         if self.alive == True:
             self.x += self.speed_x
             self.y += self.speed_y
-            self.handle_collisions(player)
+            self.handle_collisions(player, bricks)
 
     def move_left(self):
         if self.alive == False:

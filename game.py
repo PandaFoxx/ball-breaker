@@ -38,7 +38,7 @@ while running:
     if keys[pygame.K_SPACE]:
         bullet.launch(player.rect())
 
-    bullet.move(player.rect())
+    bullet.move(player.rect(), bricks)
 
     # Draw Blocks
     for i in bricks:
