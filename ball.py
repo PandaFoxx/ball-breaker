@@ -10,6 +10,7 @@ class ball:
         self.radius = 10
         self.speed_x = 0.1
         self.speed_y = 0.1
+        self.alive = False
 
     def position(self):
         return (self.x, self.y)
@@ -25,7 +26,10 @@ class ball:
             self.speed_y *= -1
     
     def launch(self):
-        for i in range(100):
+        self.alive = True
+
+    def move(self):
+        if self.alive == True:
             self.x += self.speed_x
             self.y += self.speed_y
             self.handle_boundary_collision()
