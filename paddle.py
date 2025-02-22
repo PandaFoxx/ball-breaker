@@ -7,7 +7,7 @@ class paddle:
         self.colour = (0,255,0)
         self.x = (boundary_w / 2) - (self.width / 2)
         self.y = boundary_h - (self.height * 2)
-        self.speed = 1
+        self.speed = 5
 
     def rect(self):
         return (self.x, self.y, self.width, self.height)
