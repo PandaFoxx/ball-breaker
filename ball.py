@@ -8,21 +8,21 @@ class ball:
         self.x = boundary_w / 2
         self.y = boundary_h / 2
         self.radius = 10
-        self.speed_x = 0.1
-        self.speed_y = 0.1
+        self.speed_x = 3
+        self.speed_y = 3
         self.alive = False
 
     def position(self):
         return (self.x, self.y)
     
     def handle_boundary_collision(self):
-        if self.x <= 2:
+        if self.x - self.radius <= 0:
             self.speed_x = math.fabs(self.speed_x)
-        if self.y <= 2:
+        if self.y - self.radius <= 0:
             self.speed_y = math.fabs(self.speed_y)
-        if self.x + self.radius >= self.boundary_w - 2:
+        if self.x + self.radius >= self.boundary_w:
             self.speed_x *= -1
-        if self.y + self.radius >= self.boundary_h - 2:
+        if self.y + self.radius >= self.boundary_h:
             self.speed_y *= -1
     
     def launch(self):
