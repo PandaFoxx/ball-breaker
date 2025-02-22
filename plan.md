@@ -24,3 +24,11 @@ breakout game
         - lazer
         - bigger paddle
         - catch ball
+
+- mechanics
+    - start
+        - ball stationary on paddle
+        - click button to "launch"
+        - therefore, ball needs to move with paddel initially.
+    - ball movement
+        - change angle of ball depending on how the paddle hits it
