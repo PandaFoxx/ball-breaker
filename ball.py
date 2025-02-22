@@ -54,3 +54,11 @@ class ball:
             self.x += self.speed_x
             self.y += self.speed_y
             self.handle_boundary_collision(player_rect)
+
+    def move_left(self):
+        if self.alive == False:
+            self.x -= options().player_speed
+
+    def move_right(self):
+        if self.alive == False:
+            self.x += options().player_speed
