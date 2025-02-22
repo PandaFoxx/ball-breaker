@@ -30,6 +30,8 @@ while running:
         player.move_left()
     if keys[pygame.K_RIGHT]:
         player.move_right()
+    if keys[pygame.K_SPACE]:
+        bullet.launch()
 
     # Draw Player
     pygame.draw.rect(screen, player.colour, player.rect())
