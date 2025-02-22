@@ -15,21 +15,42 @@ class ball:
     def position(self):
         return (self.x, self.y)
     
-    def handle_boundary_collision(self):
-        if self.x - self.radius <= 0:
-            self.speed_x = math.fabs(self.speed_x)
-        if self.y - self.radius <= 0:
-            self.speed_y = math.fabs(self.speed_y)
-        if self.x + self.radius >= self.boundary_w:
-            self.speed_x *= -1
-        if self.y + self.radius >= self.boundary_h:
-            self.speed_y *= -1
-    
+    def reset(self):
+        self.x = self.boundary_w / 2
+        self.y = self.boundary_h / 2
+
     def launch(self):
+        self.reset()
         self.alive = True
 
-    def move(self):
+    def die(self):
+        self.reset()
+        self.alive = False
+    
+    def handle_boundary_collision(self, player_rect):
+        left = self.x - self.radius
+        top = self.y - self.radius
+        right = self.x + self.radius
+        bottom = self.y + self.radius
+
+        if left <= 0:
+            self.speed_x = math.fabs(self.speed_x)
+
+        if top <= 0:
+            self.speed_y = math.fabs(self.speed_y)
+
+        if right >= self.boundary_w:
+            self.speed_x *= -1
+
+        #paddle
+        if bottom >= player_rect[1]:
+            if left >= player_rect[0] and right <= (player_rect[0] + player_rect[2]):
+                self.speed_y *= -1
+            else:
+                self.die()
+    
+    def move(self, player_rect):
         if self.alive == True:
             self.x += self.speed_x
             self.y += self.speed_y
-            self.handle_boundary_collision()
+            self.handle_boundary_collision(player_rect)
