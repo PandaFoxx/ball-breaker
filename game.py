@@ -2,19 +2,17 @@ import pygame
 import sys
 from paddle import paddle
 from ball import ball
+from options import options
 
 pygame.init()
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
-
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+screen = pygame.display.set_mode((options().screen_width, options().screen_height))
 clock = pygame.time.Clock()
 
-pygame.display.set_caption("Breakout")
+pygame.display.set_caption(options().screen_caption)
 
-player = paddle(SCREEN_WIDTH, SCREEN_HEIGHT)
-bullet = ball(SCREEN_WIDTH, SCREEN_HEIGHT)
+player = paddle()
+bullet = ball()
 
 running = True
 while running:
@@ -22,7 +20,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    screen.fill((0,0,0))
+    screen.fill(options().screen_color)
 
     keys = pygame.key.get_pressed()
 
@@ -36,10 +34,10 @@ while running:
     bullet.move(player.rect())
 
     # Draw Player
-    pygame.draw.rect(screen, player.colour, player.rect())
+    pygame.draw.rect(screen, player.color, player.rect())
 
     # Draw Ball
-    pygame.draw.circle(screen, bullet.colour, bullet.position(), bullet.radius)
+    pygame.draw.circle(screen, bullet.color, bullet.position(), bullet.radius)
 
     pygame.display.flip()
 

@@ -1,15 +1,16 @@
+from options import options
 import math
 
 class ball:
-    def __init__(self, boundary_w, boundary_h):
-        self.boundary_w = boundary_w
-        self.boundary_h = boundary_h
-        self.colour = (0,0,255)
-        self.x = boundary_w / 2
-        self.y = boundary_h / 2
-        self.radius = 10
-        self.speed_x = 3
-        self.speed_y = 3
+    def __init__(self):
+        self.boundary_w = options().screen_width
+        self.boundary_h = options().screen_height
+        self.color = options().ball_color
+        self.x = options().ball_x
+        self.y = options().ball_y
+        self.radius = options().ball_radius
+        self.speed_x = options().ball_speed_x
+        self.speed_y = options().ball_speed_y
         self.alive = False
 
     def position(self):

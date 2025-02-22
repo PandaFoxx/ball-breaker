@@ -1,13 +1,15 @@
+from options import options
+
 class paddle:
-    def __init__(self, boundary_w, boundary_h):
-        self.boundary_w = boundary_w-2
-        self.boundary_h = boundary_h
-        self.width = 200
-        self.height = 15
-        self.colour = (0,255,0)
-        self.x = (boundary_w / 2) - (self.width / 2)
-        self.y = boundary_h - (self.height * 2)
-        self.speed = 5
+    def __init__(self):
+        self.boundary_w = options().screen_width
+        self.boundary_h = options().screen_height
+        self.width = options().player_width
+        self.height = options().player_height
+        self.color = options().player_color
+        self.x = options().player_x
+        self.y = options().player_y
+        self.speed = options().player_speed
 
     def rect(self):
         return (self.x, self.y, self.width, self.height)
