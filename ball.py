@@ -2,31 +2,29 @@ from options import options
 import math
 
 class ball:
+    def reset_position(self, player_x, player_y, player_w, player_h):
+        self.x = player_x + player_w / 2
+        self.y = player_y - self.radius
+
     def __init__(self):
         self.boundary_w = options().screen_width
         self.boundary_h = options().screen_height
         self.color = options().ball_color
-        self.x = options().ball_x
-        self.y = options().ball_y
         self.radius = options().ball_radius
         self.speed_x = options().ball_speed_x
         self.speed_y = options().ball_speed_y
+        self.reset_position(options().player_x, options().player_y, options().player_width, options().player_height)
         self.alive = False
 
     def position(self):
         return (self.x, self.y)
-    
-    def reset(self):
-        self.x = self.boundary_w / 2
-        self.y = self.boundary_h / 2
 
-    def launch(self):
-        self.reset()
+    def launch(self, player_rect):
+        self.reset_position(player_rect[0], player_rect[1], player_rect[2], player_rect[3])
         self.alive = True
 
     def die(self, player_rect):
-        self.x = player_rect[0] + player_rect[2] / 2
-        self.y = player_rect[1] - self.radius
+        self.reset_position(player_rect[0], player_rect[1], player_rect[2], player_rect[3])
         self.alive = False
     
     def handle_boundary_collision(self, player_rect):

@@ -29,7 +29,7 @@ while running:
     if keys[pygame.K_RIGHT]:
         player.move_right()
     if keys[pygame.K_SPACE]:
-        bullet.launch()
+        bullet.launch(player.rect())
 
     bullet.move(player.rect())
 
