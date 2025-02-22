@@ -23,8 +23,9 @@ class ball:
         self.reset()
         self.alive = True
 
-    def die(self):
-        self.reset()
+    def die(self, player_rect):
+        self.x = player_rect[0] + player_rect[2] / 2
+        self.y = player_rect[1] - self.radius
         self.alive = False
     
     def handle_boundary_collision(self, player_rect):
@@ -47,7 +48,7 @@ class ball:
             if left >= player_rect[0] and right <= (player_rect[0] + player_rect[2]):
                 self.speed_y *= -1
             else:
-                self.die()
+                self.die(player_rect)
     
     def move(self, player_rect):
         if self.alive == True:
