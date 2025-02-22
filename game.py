@@ -1,6 +1,7 @@
 import pygame
 import sys
 from paddle import paddle
+from ball import ball
 
 pygame.init()
 
@@ -13,6 +14,7 @@ clock = pygame.time.Clock()
 pygame.display.set_caption("Breakout")
 
 player = paddle(SCREEN_WIDTH, SCREEN_HEIGHT)
+bullet = ball(SCREEN_WIDTH, SCREEN_HEIGHT)
 
 running = True
 while running:
@@ -31,6 +33,9 @@ while running:
 
     # Draw Player
     pygame.draw.rect(screen, player.colour, player.rect())
+
+    # Draw Ball
+    pygame.draw.circle(screen, bullet.colour, bullet.position(), bullet.radius)
 
     pygame.display.flip()
 
