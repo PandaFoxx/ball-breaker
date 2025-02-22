@@ -18,9 +18,16 @@ class paddle:
         self.colour = (0,255,0)
         self.x = (boundary_w / 2) - (self.width / 2)
         self.y = boundary_h - (self.height * 2)
+        self.speed = 1
 
     def rect(self):
         return (self.x, self.y, self.width, self.height)
+    
+    def move_left(self):
+        self.x -= self.speed
+
+    def move_right(self):
+        self.x += self.speed
 
 player = paddle(SCREEN_WIDTH, SCREEN_HEIGHT)
 
@@ -29,6 +36,15 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+    screen.fill((0,0,0))
+
+    keys = pygame.key.get_pressed()
+
+    if keys[pygame.K_LEFT]:
+        player.move_left()
+    if keys[pygame.K_RIGHT]:
+        player.move_right()
 
     # Draw Player
     pygame.draw.rect(screen, player.colour, player.rect())
