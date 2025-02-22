@@ -41,8 +41,10 @@ while running:
     # Draw Ball
     pygame.draw.circle(screen, bullet.color, bullet.position(), bullet.radius)
 
+    # Refresh graphics
     pygame.display.flip()
 
+    # Set framerate
     clock.tick(60)
 
 pygame.quit()
