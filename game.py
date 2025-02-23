@@ -38,10 +38,10 @@ while running:
 
     if keys[pygame.K_LEFT]:
         player.move_left()
-        bullet.move_left()
+        bullet.move_with_player(player.rect())
     if keys[pygame.K_RIGHT]:
         player.move_right()
-        bullet.move_right()
+        bullet.move_with_player(player.rect())
     if keys[pygame.K_SPACE]:
         bullet.launch(player.rect())
 
