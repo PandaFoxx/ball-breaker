@@ -16,6 +16,7 @@ class ball:
         self.speed_y = options().ball_speed_y
         self.reset_position(options().player_x, options().player_y, options().player_width, options().player_height)
         self.alive = False
+        self.dead = False
 
     def position(self):
         return (self.x, self.y)
@@ -30,10 +31,12 @@ class ball:
         self.speed_x = math.fabs(self.speed_x) * self.init_direction()
         self.reset_position(player[0], player[1], player[2], player[3])
         self.alive = True
+        self.dead = False
 
     def die(self, player):
-        self.reset_position(player[0], player[1], player[2], player[3])
+        #self.reset_position(player[0], player[1], player[2], player[3])
         self.alive = False
+        self.dead = True
     
     def handle_collisions(self, player, bricks):
         left = self.x - self.radius
