@@ -48,14 +48,39 @@ class ball:
             else:
                 self.die(player)
 
+        # collide with brick
         for brick in bricks:
+            # Example brick data: ((229, 235, 234), (595, 80, 50, 20))
             brick_left = brick[1][0]
             brick_top = brick[1][1]
             brick_right = brick[1][0] + brick[1][2]
             brick_bottom = brick[1][1] + brick[1][3]
-            if left <= brick_right and right >= brick_left and top <= brick_bottom and bottom >= brick_top:
-                bricks.remove(brick)
-            
+
+            # fun lil power up that deletes all blocks in path
+            # if left <= brick_right and right >= brick_left and bottom >= brick_top and top <= brick_bottom:
+            #     bricks.remove(brick)
+                
+            if left <= brick_right and right > brick_left and bottom > brick_top and top < brick_bottom:
+                if brick in bricks:
+                    bricks.remove(brick)
+                    self.speed_x *= -1
+                
+            if right >= brick_right and left < brick_right and bottom > brick_top and top < brick_bottom:
+                if brick in bricks:
+                    bricks.remove(brick)
+                    self.speed_x *= -1
+
+            if top <= brick_bottom and bottom > brick_top and left < brick_right and right > brick_left:
+                if brick in bricks:
+                    bricks.remove(brick)
+                    self.speed_y *= -1
+
+            if bottom >= brick_top and top < brick_bottom and left < brick_right and right > brick_left:
+                if brick in bricks:
+                    bricks.remove(brick)
+                    self.speed_y *= -1
+
+        
     
     def move(self, player, bricks):
         if self.alive == True:

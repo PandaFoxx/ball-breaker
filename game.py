@@ -1,6 +1,5 @@
 import pygame
 import sys
-import random
 from paddle import paddle
 from ball import ball
 from options import options
