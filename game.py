@@ -18,6 +18,14 @@ brick = block()
 
 bricks = brick.matrix()
 
+explosions = []
+for i in range(5):
+    file = f"assets/explosion-{i}.png"
+    try:
+        explosions.append(pygame.image.load(file).convert_alpha())
+    except:
+        print(f"File not found: {file}")
+
 running = True
 while running:
     for event in pygame.event.get():
@@ -48,6 +56,14 @@ while running:
 
     # Draw Ball
     pygame.draw.circle(screen, bullet.color, bullet.position(), bullet.radius)
+
+    if bullet.dead == True:
+        bullet.dead = False
+        for explosion in explosions:
+            screen.blit(explosion, (bullet.x - 48, bullet.y - 48))
+            pygame.display.flip()
+            pygame.time.delay(100)
+        bullet.reset_position(player.rect()[0], player.rect()[1], player.rect()[2])
 
     # Refresh graphics
     pygame.display.flip()
