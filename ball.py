@@ -30,7 +30,7 @@ class ball:
 
     def launch(self, player):
         self.speed_x = math.fabs(self.speed_x) * self.init_direction()
-        self.reset_position(player[0], player[1], player[2])
+        self.reset_position(player.left, player.top, player.width)
         self.alive = True
         self.dead = False
 
@@ -51,8 +51,8 @@ class ball:
             self.speed_x *= -1
 
         # collide with paddle
-        if bottom >= player[1]:
-            if right >= player[0] and left <= (player[0] + player[2]):
+        if bottom >= player.top:
+            if right >= player.left and left <= (player.left + player.width):
                 self.speed_y *= -1
             else:
                 self.die()
@@ -85,4 +85,4 @@ class ball:
 
     def move_with_player(self, player):
         if self.alive == False:
-            self.reset_position(player[0], player[1], player[2])
+            self.reset_position(player.left, player.top, player.width)
