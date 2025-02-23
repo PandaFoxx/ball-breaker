@@ -42,11 +42,9 @@ class ball:
         bottom = self.y + self.radius
 
         # collide with screen boundaries
-        if left <= 0:
-            self.speed_x = math.fabs(self.speed_x)
         if top <= 0:
-            self.speed_y = math.fabs(self.speed_y)
-        if right >= self.boundary_w:
+            self.speed_y *= -1
+        if left <= 0 or right >= self.boundary_w:
             self.speed_x *= -1
 
         # collide with paddle
