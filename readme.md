@@ -4,6 +4,18 @@ A simple Breakout clone to experiment with Python code.
 
 Built using PyGame for the graphics.
 
+# Guide
+
+Run the game from a terminal using: `py game.py`
+
+Use arrow keys (`left` and `right`) to move the paddle.
+
+Launch the ball with `space`.
+
+Have fun ;)
+
+![screenshot](/docs/screenshot.png)
+
 
 # Acknowledgements
 
