@@ -1,5 +1,5 @@
 import pygame
-from options import options
+from models.options import options
 
 class paddle:
     def __init__(self):
