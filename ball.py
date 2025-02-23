@@ -96,10 +96,6 @@ class ball:
             self.y += self.speed_y
             self.handle_collisions(player, bricks)
 
-    def move_left(self):
+    def move_with_player(self, player):
         if self.alive == False:
-            self.x -= options().player_speed
-
-    def move_right(self):
-        if self.alive == False:
-            self.x += options().player_speed
+            self.reset_position(player[0], player[1], player[2])
