@@ -1,3 +1,4 @@
+import pygame
 import math
 import random
 from options import options
@@ -24,6 +25,6 @@ class block:
             for i in range(h_range - 2):
                 self.x += self.width + self.gap
                 color = (random.randint(self.color_min, self.color_max), random.randint(self.color_min, self.color_max), random.randint(self.color_min, self.color_max))
-                rect = (self.x, self.y, self.width, self.height)
+                rect = pygame.Rect(self.x, self.y, self.width, self.height)
                 blocks.append((color, rect))
         return blocks

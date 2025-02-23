@@ -1,3 +1,4 @@
+import pygame
 import math
 import random
 from options import options
@@ -29,14 +30,14 @@ class ball:
 
     def launch(self, player):
         self.speed_x = math.fabs(self.speed_x) * self.init_direction()
-        self.reset_position(player[0], player[1], player[2])
+        self.reset_position(player.left, player.top, player.width)
         self.alive = True
         self.dead = False
 
     def die(self):
         self.alive = False
         self.dead = True
-    
+
     def handle_collisions(self, player, bricks):
         left = self.x - self.radius
         top = self.y - self.radius
@@ -50,46 +51,32 @@ class ball:
             self.speed_x *= -1
 
         # collide with paddle
-        if bottom >= player[1]:
-            if right >= player[0] and left <= (player[0] + player[2]):
+        if bottom >= player.top:
+            if right >= player.left and left <= (player.left + player.width):
                 self.speed_y *= -1
             else:
                 self.die()
 
         # collide with brick
         for brick in bricks:
-            # Example brick data: ((229, 235, 234), (595, 80, 50, 20))
-            brick_left = brick[1][0]
-            brick_top = brick[1][1]
-            brick_right = brick[1][0] + brick[1][2]
-            brick_bottom = brick[1][1] + brick[1][3]
+            # Example brick data: (Color(r, g, b), Rect(x, y, w, h))
+            block = brick[1]
 
-            # fun lil power up that deletes all blocks in path
-            # if left <= brick_right and right >= brick_left and bottom >= brick_top and top <= brick_bottom:
-            #     bricks.remove(brick)
-                
-            if left <= brick_right and right > brick_left and bottom > brick_top and top < brick_bottom:
-                if brick in bricks:
-                    bricks.remove(brick)
-                    self.speed_x *= -1
-                
-            if right >= brick_right and left < brick_right and bottom > brick_top and top < brick_bottom:
-                if brick in bricks:
-                    bricks.remove(brick)
-                    self.speed_x *= -1
+            closest_x = max(block.left, min(self.x, block.right))
+            closest_y = max(block.top, min(self.y, block.bottom))
 
-            if top <= brick_bottom and bottom > brick_top and left < brick_right and right > brick_left:
+            dx = self.x - closest_x
+            dy = self.y - closest_y
+            distance = math.hypot(dx, dy)
+
+            if distance <= self.radius:
                 if brick in bricks:
                     bricks.remove(brick)
+                if dx >= dy:
+                    self.speed_x *= -1
+                else:
                     self.speed_y *= -1
 
-            if bottom >= brick_top and top < brick_bottom and left < brick_right and right > brick_left:
-                if brick in bricks:
-                    bricks.remove(brick)
-                    self.speed_y *= -1
-
-        
-    
     def move(self, player, bricks):
         if self.alive == True:
             self.x += self.speed_x
@@ -98,4 +85,4 @@ class ball:
 
     def move_with_player(self, player):
         if self.alive == False:
-            self.reset_position(player[0], player[1], player[2])
+            self.reset_position(player.left, player.top, player.width)
