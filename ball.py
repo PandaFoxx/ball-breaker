@@ -1,4 +1,5 @@
 import math
+import random
 from options import options
 
 class ball:
@@ -19,7 +20,14 @@ class ball:
     def position(self):
         return (self.x, self.y)
 
+    def init_direction(self):
+        r = random.randint(1, 10)
+        if r <= 5:
+            return -1
+        return 1
+
     def launch(self, player):
+        self.speed_x = math.fabs(self.speed_x) * self.init_direction()
         self.reset_position(player[0], player[1], player[2], player[3])
         self.alive = True
 
