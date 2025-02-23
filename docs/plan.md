@@ -36,9 +36,3 @@
     - start
         - ball stationary on paddle
         - click button to "launch"
-
-
-
-
-
-
