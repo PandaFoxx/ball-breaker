@@ -1,9 +1,9 @@
 import pygame
 import sys
-import random
 from paddle import paddle
 from ball import ball
 from options import options
+from block import block
 
 pygame.init()
 
@@ -14,6 +14,9 @@ pygame.display.set_caption(options().screen_caption)
 
 player = paddle()
 bullet = ball()
+brick = block()
+
+bricks = brick.matrix()
 
 running = True
 while running:
@@ -34,16 +37,11 @@ while running:
     if keys[pygame.K_SPACE]:
         bullet.launch(player.rect())
 
-    bullet.move(player.rect())
+    bullet.move(player.rect(), bricks)
 
     # Draw Blocks
-    brick_y = -25
-    for a in range(5):
-        brick_y += 35
-        brick_x = 10
-        for b in range(12):
-            pygame.draw.rect(screen, (random.randint(128,255),random.randint(128,255),random.randint(128,255)), (brick_x, brick_y, 50, 20))
-            brick_x += 65
+    for i in bricks:
+        pygame.draw.rect(screen, i[0], i[1])
 
     # Draw Player
     pygame.draw.rect(screen, player.color, player.rect())

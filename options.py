@@ -15,4 +15,4 @@ class options:
         self.ball_color = (0,255,0)
         self.ball_radius = 10
         self.ball_speed_x = 3
-        self.ball_speed_y = 3
+        self.ball_speed_y = -3
