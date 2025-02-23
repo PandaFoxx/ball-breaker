@@ -1,4 +1,5 @@
-from options import options
+import pygame
+from models.options import options
 
 class paddle:
     def __init__(self):
@@ -12,8 +13,8 @@ class paddle:
         self.speed = options().player_speed
 
     def rect(self):
-        return (self.x, self.y, self.width, self.height)
-    
+        return pygame.Rect(self.x, self.y, self.width, self.height)
+
     def move_left(self):
         if self.x > 2:
             self.x -= self.speed

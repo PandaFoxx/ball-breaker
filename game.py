@@ -1,9 +1,9 @@
 import pygame
 import sys
-from paddle import paddle
-from ball import ball
-from options import options
-from block import block
+from models.paddle import paddle
+from models.ball import ball
+from models.options import options
+from models.block import block
 
 pygame.init()
 
@@ -63,7 +63,7 @@ while running:
             screen.blit(explosion, (bullet.x - 48, bullet.y - 48))
             pygame.display.flip()
             pygame.time.delay(100)
-        bullet.reset_position(player.rect()[0], player.rect()[1], player.rect()[2])
+        bullet.reset_position(player.rect().left, player.rect().top, player.rect().width)
 
     # Refresh graphics
     pygame.display.flip()
