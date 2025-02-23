@@ -1,9 +1,9 @@
 import pygame
 import sys
-from paddle import paddle
-from ball import ball
-from options import options
-from block import block
+from models.paddle import paddle
+from models.ball import ball
+from models.options import options
+from models.block import block
 
 pygame.init()
 

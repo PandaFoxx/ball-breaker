@@ -1,7 +1,6 @@
-import pygame
 import math
 import random
-from options import options
+from models.options import options
 
 class ball:
     def reset_position(self, player_x, player_y, player_w):
@@ -16,8 +15,8 @@ class ball:
         self.speed_x = options().ball_speed_x
         self.speed_y = options().ball_speed_y
         self.reset_position(options().player_x, options().player_y, options().player_width)
-        self.alive = False # starting condition
-        self.dead = False # triggers explosion
+        self.in_motion = False
+        self.dead = False
 
     def position(self):
         return (self.x, self.y)
@@ -31,11 +30,11 @@ class ball:
     def launch(self, player):
         self.speed_x = math.fabs(self.speed_x) * self.init_direction()
         self.reset_position(player.left, player.top, player.width)
-        self.alive = True
+        self.in_motion = True
         self.dead = False
 
     def die(self):
-        self.alive = False
+        self.in_motion = False
         self.dead = True
 
     def handle_collisions(self, player, bricks):
@@ -78,11 +77,11 @@ class ball:
                     self.speed_y *= -1
 
     def move(self, player, bricks):
-        if self.alive == True:
+        if self.in_motion == True:
             self.x += self.speed_x
             self.y += self.speed_y
             self.handle_collisions(player, bricks)
 
     def move_with_player(self, player):
-        if self.alive == False:
+        if self.in_motion == False:
             self.reset_position(player.left, player.top, player.width)

@@ -1,7 +1,7 @@
 import pygame
 import math
 import random
-from options import options
+from models.options import options
 
 class block:
     def __init__(self):
@@ -16,6 +16,12 @@ class block:
         self.color_min = options().block_color_min
         self.color_max = options().block_color_max
 
+    def random_color(self):
+        red = random.randint(self.color_min, self.color_max)
+        green = random.randint(self.color_min, self.color_max)
+        blue = random.randint(self.color_min, self.color_max)
+        return (red, green, blue)
+
     def matrix(self):
         blocks = []
         h_range = math.floor((self.screen_width - self.init_x) / (self.width + self.gap))
@@ -24,7 +30,7 @@ class block:
             self.x = self.init_x
             for i in range(h_range - 2):
                 self.x += self.width + self.gap
-                color = (random.randint(self.color_min, self.color_max), random.randint(self.color_min, self.color_max), random.randint(self.color_min, self.color_max))
                 rect = pygame.Rect(self.x, self.y, self.width, self.height)
+                color = self.random_color()
                 blocks.append((color, rect))
         return blocks
