@@ -63,7 +63,7 @@ while running:
             screen.blit(explosion, (bullet.x - 48, bullet.y - 48))
             pygame.display.flip()
             pygame.time.delay(100)
-        bullet.reset_position(player.rect()[0], player.rect()[1], player.rect()[2], player.rect()[3])
+        bullet.reset_position(player.rect()[0], player.rect()[1], player.rect()[2])
 
     # Refresh graphics
     pygame.display.flip()

@@ -3,7 +3,7 @@ import random
 from options import options
 
 class ball:
-    def reset_position(self, player_x, player_y, player_w, player_h):
+    def reset_position(self, player_x, player_y, player_w):
         self.x = player_x + player_w / 2
         self.y = player_y - self.radius
 
@@ -14,9 +14,9 @@ class ball:
         self.radius = options().ball_radius
         self.speed_x = options().ball_speed_x
         self.speed_y = options().ball_speed_y
-        self.reset_position(options().player_x, options().player_y, options().player_width, options().player_height)
-        self.alive = False
-        self.dead = False
+        self.reset_position(options().player_x, options().player_y, options().player_width)
+        self.alive = False # starting condition
+        self.dead = False # triggers explosion
 
     def position(self):
         return (self.x, self.y)
@@ -29,12 +29,11 @@ class ball:
 
     def launch(self, player):
         self.speed_x = math.fabs(self.speed_x) * self.init_direction()
-        self.reset_position(player[0], player[1], player[2], player[3])
+        self.reset_position(player[0], player[1], player[2])
         self.alive = True
         self.dead = False
 
-    def die(self, player):
-        #self.reset_position(player[0], player[1], player[2], player[3])
+    def die(self):
         self.alive = False
         self.dead = True
     
@@ -52,10 +51,10 @@ class ball:
 
         # collide with paddle
         if bottom >= player[1]:
-            if left >= player[0] and right <= (player[0] + player[2]):
+            if right >= player[0] and left <= (player[0] + player[2]):
                 self.speed_y *= -1
             else:
-                self.die(player)
+                self.die()
 
         # collide with brick
         for brick in bricks:
