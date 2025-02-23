@@ -16,3 +16,11 @@ class options:
         self.ball_radius = 10
         self.ball_speed_x = 3
         self.ball_speed_y = -3
+
+        self.block_init_x = 10
+        self.block_x = 10
+        self.block_y = 10
+        self.block_width = 50
+        self.block_height = 20
+        self.block_color_min = 128
+        self.block_color_max = 255

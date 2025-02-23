@@ -1,15 +1,15 @@
 import random
+from options import options
 
 class block:
     def __init__(self):
-        self.init_x = 10
-        self.init_y = 10
-        self.x = 10
-        self.y = 10
-        self.width = 50
-        self.height = 20
-        self.color_min = 128
-        self.color_max = 255
+        self.init_x = options().block_init_x
+        self.x = options().block_x
+        self.y = options().block_y
+        self.width = options().block_width
+        self.height = options().block_height
+        self.color_min = options().block_color_min
+        self.color_max = options().block_color_max
 
     def matrix(self):
         blocks = []
