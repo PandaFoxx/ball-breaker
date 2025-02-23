@@ -22,5 +22,7 @@ class options:
         self.block_y = 10
         self.block_width = 50
         self.block_height = 20
+        self.block_gap = 15
+        self.block_rows = 5
         self.block_color_min = 128
         self.block_color_max = 255
