@@ -9,5 +9,5 @@ Built using PyGame for the graphics.
 
 - Thanks to Dragon Nguyen (bdragon1727) for the explosion graphics (https://bdragon1727.itch.io/retro-impact-effect-pack-3)
 - Origianl Breakout game (https://en.wikipedia.org/wiki/Breakout_(video_game))
-- Pygame (https://www.pygame.org/docs/)
-- Python v3 (https://www.python.org/)
+- Pygame v2.6.1 (https://www.pygame.org/docs/)
+- Python v3.13.1 (https://www.python.org/)
